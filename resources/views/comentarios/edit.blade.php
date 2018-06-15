@@ -3,9 +3,9 @@
 
 <div class="col-lg-6">
     {!! Form::open(['route'=>['comentarios.update', $comentario->id ], 'method'=>'PUT']) !!}
-       
-    {!! Field::text('nombre', {{ $comentario->nombre }}, ['placeholder'=>'nombre', 'label'=>'Nombre']) !!}
-    {!! Field::textarea('descripcion', {{ $comentario->descripcion }}, ['placeholder'=>'descripcion', 'label'=>'Descripcion']) !!}
+      
+    {!! Field::text('nombre',  $comentario->nombre, ['placeholder'=>'nombre', 'label'=>'Nombre']) !!}
+    {!! Field::textarea('descripcion', $comentario->descripcion , ['placeholder'=>'descripcion', 'label'=>'Descripcion']) !!}
     <button class='btn btn-primary' > Grabar</button>
     {!! Form::close() !!}
     

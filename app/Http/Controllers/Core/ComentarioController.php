@@ -82,7 +82,7 @@ class ComentarioController extends Controller
     public function update(Request $request, Comentario $comentario)
     {
         
-           dd($request, $comentario);
+           
            
            $comentario->nombre=$request->nombre;
            $comentario->descripcion=$request->descripcion;
@@ -100,5 +100,6 @@ class ComentarioController extends Controller
     public function destroy(Comentario $comentario)
     {
        $comentario->delete();
+       return redirect()->route("comentarios.index");
     }
 }
