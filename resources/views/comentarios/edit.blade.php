@@ -1,32 +1,15 @@
 @extends('layouts.app')
 @section('content')
-<div class="row justify-content-center " >
-<div class=" col-lg-6 col-lg-offset-3 container">
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover" >
-            <tr class="heading">
-                <td><b>Nombre</b></td>
-                <td><b>Descripcion</b></td>
-                <td><b>Acciones</b></td>
-            </tr>
 
-
-            @foreach($tabla as $item)
-            <tr>
-                <td>{{ $item->nombre }}</td>
-                <td>{{ $item->descripcion }}</td>
-                <td><a class="btn btn-primary btn-xs" href="{{ route("comentarios.edit", [$item->id]) }}" >Editar</a>
-                   {!! Form::open(['route'=>['comentarios.destroy', $item->id], 'method'=>'DELETE']) !!}
-            <button class="btn btn-danger btn-xs">Eliminar</button>
-            {!! Form::close()!!}
-            </tr>
-            @endforeach
-        </table>
-       {!! $tabla->render() !!}
-    </div>
+<div class="col-lg-6">
+    {!! Form::open(['route'=>['comentarios.update', $comentario->id ], 'method'=>'PUT']) !!}
+       
+    {!! Field::text('nombre', {{ $comentario->nombre }}, ['placeholder'=>'nombre', 'label'=>'Nombre']) !!}
+    {!! Field::textarea('descripcion', {{ $comentario->descripcion }}, ['placeholder'=>'descripcion', 'label'=>'Descripcion']) !!}
+    <button class='btn btn-primary' > Grabar</button>
+    {!! Form::close() !!}
+    
 </div>
-</div>
-
 <div id="disqus_thread"></div>
 <script>
 
@@ -47,6 +30,8 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
 
 @endsection
 

@@ -18,7 +18,7 @@ class ComentarioController extends Controller
     {
 
        $id_usuario=auth()->user()->id;
-        $comentarios = Comentario::where('user_id',  '=',$id_usuario)->paginate(2);
+        $comentarios = Comentario::where('user_id',  '=',$id_usuario)->paginate(1);
         return View::make('comentarios.index')->with('tabla',$comentarios);
     }
 
@@ -68,7 +68,8 @@ class ComentarioController extends Controller
      */
     public function edit(Comentario $comentario)
     {
-        //
+        return view("comentarios.edit", compact("comentario"));
+        
     }
 
     /**
@@ -80,7 +81,14 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, Comentario $comentario)
     {
-        //
+        
+           dd($request, $comentario);
+           
+           $comentario->nombre=$request->nombre;
+           $comentario->descripcion=$request->descripcion;
+           $comentario->save();
+           return redirect()->route("comentarios.index");
+//
     }
 
     /**
@@ -91,6 +99,6 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+       $comentario->delete();
     }
 }
